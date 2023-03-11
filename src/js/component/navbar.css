@@ -1,0 +1,10 @@
+.navbar-brand-image {
+    max-width:75px;
+    height: 75px;
+}
+.navbar-right-controls {
+    display:flex;
+}
+.navbar-form-control {
+    margin-left: 3px;
+}

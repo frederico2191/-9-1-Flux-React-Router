@@ -1,0 +1,14 @@
+.card-scroller {
+    overflow: auto;
+    white-space: nowrap;
+  }
+  .card-scroller-instance {
+    display: inline-block;
+    float: none;
+  }
+
+  .scrollerTitles{
+    color: red;
+  }
+
+  
