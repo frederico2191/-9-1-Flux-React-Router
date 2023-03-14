@@ -25,9 +25,7 @@ const Home = () =>{
 								<div key={index}>
 									<Card
 										className="list-group-item d-flex justify-content-between"
-										// style={{ background: item.background }}
-										name={item.name}
-										id={item.uid}
+										item={item}
 									>
 										
 									</Card>
@@ -42,9 +40,7 @@ const Home = () =>{
 								<div key={index}>
 									<Card
 										className="list-group-item d-flex justify-content-between"
-										// style={{ background: item.background }}
-										name={item.name}
-										id={item.uid}
+										item={item}
 									>
 									</Card>
 								</div>
