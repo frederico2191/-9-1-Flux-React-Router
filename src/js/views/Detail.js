@@ -8,11 +8,18 @@ import injectContext, { Context } from "../store/appContext";
 import { AiOutlineHeart } from 'react-icons/ai';
 
 
+const Detail = () => {
+    const { store, actions} = useContext(Context);
+    const params = useParams()
+    actions.
 
-export const Character = () => {
-  const params = useParams()
-
-  console.log('params', params)
-
-  return console.log("i am the charactrer")
+  return (
+    <div>
+        <h1>
+            Detail!!! {params.id}
+        </h1>
+    </div>
+  )
 }
+
+export default Detail

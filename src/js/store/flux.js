@@ -30,34 +30,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			toggleFavourite: (id) => {
-				console.log("inside favorite hadnler: 1st step load favorites:", getStore())
+			toggleFavourite: (element) => {
 				const store = getStore()
-				// const favorites = store.favorites
-				const favorites = store.favorites
-				const people = store.people
-				console.log("favoritesss before:", favorites)
+				let favorites = store.favorites
 
-				// const filteredFavorites = favorites.map(el => !el.uid === id)
-				// console.log(filteredFavorites, "filtered favorites")
+				const isFavourite = favorites.find(el => el.name === element.name)
+				if (isFavourite) favorites = favorites.filter(el => el.name !== element.name)
+				else favorites.push(element)
 
-				// const filteredPeople = people.filter(el => el.uid === id)
-				// console.log(filteredPeople, "filtered people")
-
-				// setStore({favorites: updatedFavorites})
-				console.log("store.favorites!!!!!!!!!!222222222:", store.favorites)
-				console.log("inside favorite hadnler: 2nd step load favorites:", getStore())
-
-				// setStore({favorites: })
-				
-			
-				// favorites.push({"uid":uid, "url":url, "name":name, "type":type, "favorite": true})		
-				// //filter the temp var for duplicates				
-				// const names = favorites.map(o => o.name)			
-				// const filtered = favorites.filter(({name}, uid) => !names.includes(name, uid + 1))
-				// //console.log(filtered);
-
-				setStore({favorites: filtered})
+				setStore({ favorites })
 			},
 			fetchPeople: () => {
 				fetch('https://www.swapi.tech/api/people', {
@@ -66,10 +47,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				}).then(response => response.json()).then(data => {
-					const parsedData = data.results.map(el => ({ ...el, isFavourite: false }))
+					const parsedData = data.results.map(el => ({ ...el, type: 'character' }))
 					console.log(parsedData, "parsedData")
 					
-					setStore({people: parsedData})
+					setStore({ people: parsedData })
 				}
 			).then(() => console.log(getStore(),"getStore") 
 			)},
@@ -80,12 +61,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				}).then(response => response.json()).then(data => {
-					const parsedData = data.results.map(el => ({ ...el, isFavourite: false }))
+					const parsedData = data.results.map(el => ({ ...el, type: 'planet' }))
 
 					setStore({planets: parsedData})
 				}
 			).then(() => console.log(getStore(),"getStore") 
 			)},
+			fetchDetail: (item) => {
+				fetch({})
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
