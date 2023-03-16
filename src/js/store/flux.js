@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			people:[],
 			planets: [],
+			detail:{},
 			favorites: []
 		},
 		actions: {
@@ -40,6 +41,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({ favorites })
 			},
+			fetchDetail: ({ type, id }) => {
+				console.log(type, id, "TYPE AND ID INSIDE")
+				fetch(`https://www.swapi.tech/api/${type}/${id}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(response => response.json()).then(data => {
+					setStore({ detail: data.result.properties })
+				}
+			).then(() => console.log(getStore(),"getStore") 
+			)},
 			fetchPeople: () => {
 				fetch('https://www.swapi.tech/api/people', {
 					method: "GET",
@@ -47,13 +60,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				}).then(response => response.json()).then(data => {
-					const parsedData = data.results.map(el => ({ ...el, type: 'character' }))
+					const parsedData = data.results.map(el => ({ ...el, type: 'people' }))
 					console.log(parsedData, "parsedData")
 					
 					setStore({ people: parsedData })
 				}
 			).then(() => console.log(getStore(),"getStore") 
 			)},
+
+
+
+
+
 			fetchPlanets: () => {
 				fetch('https://www.swapi.tech/api/planets', {
 					method: "GET",
@@ -67,9 +85,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			).then(() => console.log(getStore(),"getStore") 
 			)},
-			fetchDetail: (item) => {
-				fetch({})
-			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
