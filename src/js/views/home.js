@@ -9,12 +9,16 @@ import { AiOutlineHeart } from 'react-icons/ai';
 
 const Home = () =>{
 	const { store, actions} = useContext(Context);
-	console.log(store.people,"store.people");
+	console.log(store,"store IS MEEEE");
 	console.log(store.planets,"store.planets is here!")
+
 	useEffect(() => {
 		actions.fetchPeople();
 		actions.fetchPlanets();
+		actions.fetchVehicles();
+
 	}, []);
+	console.log(store.vehicles, "we are the store vehicles")
 
 	return (
 		<div>
@@ -27,7 +31,6 @@ const Home = () =>{
 										className="list-group-item d-flex justify-content-between"
 										item={item}
 									>
-										
 									</Card>
 								</div>
 							);
@@ -36,6 +39,20 @@ const Home = () =>{
 			<h1 className="scrollerTitles">Planets</h1>
 			<ul className="list-group">
 						{store.planets?.length && store.planets.map((item, index) => {
+							return (
+								<div key={index}>
+									<Card
+										className="list-group-item d-flex justify-content-between"
+										item={item}
+									>
+									</Card>
+								</div>
+							);
+						})}
+					</ul>
+			<h1 className="scrollerTitles">Vehicles</h1>
+			<ul className="list-group">
+						{store.vehicles?.length && store.vehicles.map((item, index) => {
 							return (
 								<div key={index}>
 									<Card

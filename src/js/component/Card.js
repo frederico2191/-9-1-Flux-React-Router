@@ -20,7 +20,7 @@ const Card = ({ item }) => {
           <div className="card-body">
             <h5 className="card-title">{item.name}</h5>
             <div className="d-flex justify-content-between">
-              <Link to={`/${item.type}/` + item.uid}>
+              <Link to={`/${item.type}/${item.typeImg}/${item.uid}`}>
                 <button className="btn btn-outline-primary">Learn More</button>
               </Link>
               <button className="btn btn-outline-warning" onClick={handleToggleFavorite}>

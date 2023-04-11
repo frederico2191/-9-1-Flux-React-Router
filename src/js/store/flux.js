@@ -18,8 +18,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			people:[],
 			planets: [],
+			vehicles:[],
+			optionsList: [],
 			detail:{},
-			favorites: []
+			favorites: [],
+			favoriteCounter: 0,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -31,14 +34,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
+			generateOptionsList: () => {
+				const store = getStore();
+				const optionsList= store.optionsList
+				const planets= store.planets
+				let generatedList= store.planets.map(el=>el.name)
+				console.log(generatedList, "the generated List")
+				setStore({optionsList: generatedList })
+				
+			},
 			toggleFavourite: (element) => {
 				const store = getStore()
 				let favorites = store.favorites
+				let counter = store.favoriteCounter
 
 				const isFavourite = favorites.find(el => el.name === element.name)
-				if (isFavourite) favorites = favorites.filter(el => el.name !== element.name)
-				else favorites.push(element)
-
+				if (isFavourite) {
+					favorites = favorites.filter(el => el.name !== element.name)
+					counter--
+				}
+				else {
+					favorites.push(element)
+					counter++
+				}
+				setStore({favoriteCounter: counter })
 				setStore({ favorites })
 			},
 			fetchDetail: ({ type, id }) => {
@@ -60,18 +79,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				}).then(response => response.json()).then(data => {
-					const parsedData = data.results.map(el => ({ ...el, type: 'people' }))
-					console.log(parsedData, "parsedData")
-					
+					const parsedData = data.results.map(el => ({ ...el, type: 'people', typeImg:'characters' }))
 					setStore({ people: parsedData })
 				}
 			).then(() => console.log(getStore(),"getStore") 
 			)},
-
-
-
-
-
+			fetchVehicles: () => {
+				fetch('https://www.swapi.tech/api/vehicles', {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(response => response.json()).then(data => {
+					const parsedData = data.results.map(el => ({ ...el, type: 'vehicles', typeImg:'vehicles' }))
+					console.log("parsedData of VEHICELSS:",parsedData )
+					
+					setStore({ vehicles: parsedData })
+				}
+			).then(() => console.log(getStore(),"getStore") 
+			)},
 			fetchPlanets: () => {
 				fetch('https://www.swapi.tech/api/planets', {
 					method: "GET",
@@ -79,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				}).then(response => response.json()).then(data => {
-					const parsedData = data.results.map(el => ({ ...el, type: 'planet' }))
+					const parsedData = data.results.map(el => ({ ...el, type: 'planets', typeImg:'planets' }))
 
 					setStore({planets: parsedData})
 				}

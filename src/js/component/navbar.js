@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import starWars from "./starWars.png"
 import "./navbar.css"
@@ -8,6 +8,11 @@ import Favorites from "./Favorites";
 
 export const Navbar = () => {
 	const {store, actions} = useContext(Context)
+				const optionsList= store.optionsList
+				const planets= store.planets
+				let generatedList= [...store.people.map(el=>el.name),...store.vehicles.map(el=>el.name),...store.planets.map(el=>el.name)]
+				console.log(generatedList, "the generated List")
+
 
 
 	return (
@@ -18,17 +23,19 @@ export const Navbar = () => {
 					<span className="navbar-toggler-icon"></span>
 				</button>
 				<div className="navbar-right-controls">
-					{/* <form className="d-flex" role="search">
+					<form className="d-flex" role="search">
 						<input className="form-control"  list="datalistOptions" type="search" placeholder="Type to search" aria-label="Search"></input>
 						<datalist id="datalistOptions">
-							<option value="San Francisco"/>
-							<option value="New York"/>
-							<option value="Seattle"/>
-							<option value="Los Angeles"/>
-							<option value="Chicago"/>
+							{generatedList.length && generatedList.map((element) => {
+							return (
+							<>
+							<option value={element}/>
+							</>
+							)})}
 						</datalist>
+
 						<button className="btn btn-outline-primary navbar-form-control" type="submit">Search</button>
-					</form> */}
+					</form>
 					<Favorites/>
 				</div>
 			</div>

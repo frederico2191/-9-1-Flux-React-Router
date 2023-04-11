@@ -11,13 +11,10 @@ import { AiOutlineHeart } from 'react-icons/ai';
 const Detail = () => {
     const { store, actions} = useContext(Context);
     const {pathname}= useLocation()
-    const [, type, id] = pathname.split("/")
+    const [ , type, typeImg, id] = pathname.split("/")
     useEffect(() => {
-      console.log(actions.fetchDetail, "I am the fetched detail")
       actions.fetchDetail({type, id});
     }, [type, id]);
-
-    
 
 
   return (
@@ -29,7 +26,7 @@ const Detail = () => {
         <div className="container text-center">
   <div className="row justify-content-start">
     <div className="col-6">
-      One of two columns
+      <img src={`https://starwars-visualguide.com/assets/img/${typeImg}/${id}.jpg`}></img>
     </div>
     <div className="col-6">
     </div>
