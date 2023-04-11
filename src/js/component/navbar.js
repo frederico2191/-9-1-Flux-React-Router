@@ -18,7 +18,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary bg-light">
 			<div className="container-fluid">
-				<Link className="navbar-brand nav-link active" aria-current="page" to="/"><img className="navbar-brand-image"src={starWars} alt="Logo"/></Link>
+				<Link className="navbar-brand nav-link active" aria-current="page" to="/"><img className="navbar-brand-image" src={starWars} alt="Logo"/></Link>
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
 				</button>
@@ -26,15 +26,15 @@ export const Navbar = () => {
 					<form className="d-flex" role="search">
 						<input className="form-control"  list="datalistOptions" type="search" placeholder="Type to search" aria-label="Search"></input>
 						<datalist id="datalistOptions">
-							{generatedList.length && generatedList.map((element) => {
+							{generatedList.length && generatedList.map((element, index) => {
 							return (
-							<>
-							<option value={element}/>
-							</>
+							<option key={index} value={element}/>
 							)})}
 						</datalist>
 
-						<button className="btn btn-outline-primary navbar-form-control" type="submit">Search</button>
+						{/* <Link to={`/${item.type}/${item.typeImg}/${item.uid}`}>
+							<button className="btn btn-outline-primary navbar-form-control" type="submit">Search</button>
+						</Link> */}
 					</form>
 					<Favorites/>
 				</div>

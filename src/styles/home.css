@@ -1,14 +1,27 @@
-.card-scroller {
-    overflow: auto;
-    white-space: nowrap;
-  }
-  .card-scroller-instance {
-    display: inline-block;
-    float: none;
-  }
+
 
   .scrollerTitles{
     color: red;
   }
+
+.horizontal-scroller {
+    display: flex;
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    flex-direction: row;
+}
+
+/* .card {
+  display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    padding: 20px;
+    background: white;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+    scroll-snap-align: start;
+    transition: all 0.2s;
+} */
 
   

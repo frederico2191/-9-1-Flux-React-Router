@@ -1,74 +1,67 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Card from "../component/Card";
-import injectContext, { Context } from "../store/appContext";
-import { AiOutlineHeart } from 'react-icons/ai';
+import { Context } from "../store/appContext";
 
+import "../../styles/home.css";
 
 const Home = () =>{
 	const { store, actions} = useContext(Context);
-	console.log(store,"store IS MEEEE");
-	console.log(store.planets,"store.planets is here!")
-
 	useEffect(() => {
 		actions.fetchPeople();
 		actions.fetchPlanets();
 		actions.fetchVehicles();
-
 	}, []);
-	console.log(store.vehicles, "we are the store vehicles")
-
+	
 	return (
 		<div>
 			<h1 className="scrollerTitles">Characters</h1>
-			<ul className="list-group">
+			<div className="list-group horizontal-scroller">
 						{store.people?.length && store.people.map((item, index) => {
 							return (
-								<div key={index}>
+								// <div key={index} className="card">
 									<Card
+									key={index} 
 										className="list-group-item d-flex justify-content-between"
 										item={item}
+										category="characters"
 									>
 									</Card>
-								</div>
+								// </div>
 							);
 						})}
-					</ul>
+					</div>
 			<h1 className="scrollerTitles">Planets</h1>
-			<ul className="list-group">
+			<ul className="list-group  horizontal-scroller">
 						{store.planets?.length && store.planets.map((item, index) => {
 							return (
-								<div key={index}>
 									<Card
+										key={index} 
 										className="list-group-item d-flex justify-content-between"
 										item={item}
+										category="planets"
 									>
 									</Card>
-								</div>
 							);
 						})}
 					</ul>
 			<h1 className="scrollerTitles">Vehicles</h1>
-			<ul className="list-group">
+			<ul className="list-group horizontal-scroller">
 						{store.vehicles?.length && store.vehicles.map((item, index) => {
 							return (
-								<div key={index}>
 									<Card
+										key={index} 
 										className="list-group-item d-flex justify-content-between"
 										item={item}
+										category="vehicles"
 									>
 									</Card>
-								</div>
 							);
 						})}
 					</ul>
 		</div>
 	)
-
-	
-	
 };
 
 export default Home
