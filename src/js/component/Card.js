@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { Context } from "../store/appContext";
+import fallbackImage from './fallback.png'
 
 
 
@@ -11,7 +12,7 @@ const Card = ({ className, item, category }) => {
   const isFavorite = store.favorites.find(el => el.name === item.name)
 
   const addImageFallback = (event) => {
-    event.currentTarget.src = "./fallback.png"
+    event.currentTarget.src = fallbackImage
   };
 
 

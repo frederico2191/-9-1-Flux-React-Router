@@ -20,7 +20,6 @@ const Home = () =>{
 			<div className="list-group horizontal-scroller">
 						{store.people?.length && store.people.map((item, index) => {
 							return (
-								// <div key={index} className="card">
 									<Card
 									key={index} 
 										className="list-group-item d-flex justify-content-between"
@@ -28,7 +27,6 @@ const Home = () =>{
 										category="characters"
 									>
 									</Card>
-								// </div>
 							);
 						})}
 					</div>
