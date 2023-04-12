@@ -4,7 +4,6 @@ import { Context } from '../store/appContext'
 import { TfiTrash } from 'react-icons/tfi';
 
 
-
 const Favorites = () => {
     const { store, actions } = useContext(Context)
     const favoritesExist = store.favoriteCounter>0

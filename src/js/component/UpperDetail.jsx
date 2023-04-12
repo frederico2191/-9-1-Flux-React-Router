@@ -1,11 +1,8 @@
 
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
-import rigoImage from "../../img/rigo-baby.jpg";
+import { useLocation } from "react-router-dom";
 import "../../styles/home.css";
-import Card from "../component/Card";
-import injectContext, { Context } from "../store/appContext";
-import { AiOutlineHeart } from 'react-icons/ai';
+import { Context } from "../store/appContext";
 
 
 const UpperDetail = () => {
