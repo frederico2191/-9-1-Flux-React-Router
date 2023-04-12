@@ -14,9 +14,7 @@ const Card = ({ className, item, category }) => {
   const addImageFallback = (event) => {
     event.currentTarget.src = fallbackImage
   };
-
-
-
+  
   return (
     <div /**className={className}*/>
         <div className="card" style={{ width: '18rem' }}>

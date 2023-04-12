@@ -17,7 +17,6 @@ const Detail = () => {
       actions.fetchDetail({type, id});
     }, [type, id]);
     
-    console.log("i am the type", type)
     if(type=="people") {
       return (
         <div>
