@@ -15,7 +15,7 @@ const Favorites = () => {
           Favorites { favoritesExist && store.favoriteCounter}
         </a>
         
-        <ul className="dropdown-menu">
+        <ul className="dropdown-menu dropdown-menu-end">
           {!favoritesExist? <li className='px-2'>No favorites to show</li> : store.favorites.map((favorite, index) => (
             <li className="d-flex flex-row" key={index.toString()}>
               <Link className="dropdown-item" to={`${favorite.type}/${favorite.typeImg}/${favorite.uid}`}>

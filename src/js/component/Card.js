@@ -10,7 +10,6 @@ const Card = ({ className, item, category }) => {
   const { actions, store } = useContext(Context);
   const handleToggleFavorite = () => actions.toggleFavourite(item)
   const isFavorite = store.favorites.find(el => el.name === item.name)
-
   const addImageFallback = (event) => {
     event.currentTarget.src = fallbackImage
   };
